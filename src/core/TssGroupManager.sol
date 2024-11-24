@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity >0.5.0 <0.9.0;
 
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/cryptography/ECDSAUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 import {Lib_Address} from "../utils/Lib_Address.sol";
 import "./ITssGroupManager.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
@@ -16,9 +13,6 @@ contract TssGroupManager is
     ReentrancyGuardUpgradeable,
     ITssGroupManager
 {
-    using SafeMathUpgradeable for uint256;
-    using ECDSAUpgradeable for bytes32;
-    using AddressUpgradeable for address;
     bytes confirmGroupPublicKey;
     address confirmGroupAddress;
     uint256 threshold;
@@ -41,8 +35,8 @@ contract TssGroupManager is
         _disableInitializers();
     }
 
-    function initialize() public initializer {
-        __Ownable_init();
+    function initialize(address initialOwner) public initializer {
+        __Ownable_init(initialOwner);
         gRoundId = 0;
         threshold = 0;
         tempThreshold = 0;

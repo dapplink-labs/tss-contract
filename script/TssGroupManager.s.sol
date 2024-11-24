@@ -15,7 +15,7 @@ contract TssGroupManagerScript is Script {
 
         tssGroupManager = new TssGroupManager();
         proxyTssGroupManager = new Proxy(address(tssGroupManager), admin, "");
-        TssGroupManager(address(proxyTssGroupManager)).initialize();
+        TssGroupManager(address(proxyTssGroupManager)).initialize(admin);
 
         vm.stopBroadcast();
     }

@@ -13,11 +13,11 @@ contract TssGroupManager is
     ReentrancyGuardUpgradeable,
     ITssGroupManager
 {
-    bytes confirmGroupPublicKey;
-    address confirmGroupAddress;
-    uint256 threshold;
-    uint256 gRoundId;
-    uint256 tempThreshold;
+    bytes public confirmGroupPublicKey;
+    address public confirmGroupAddress;
+    uint256 public threshold;
+    uint256 public gRoundId;
+    uint256 public tempThreshold;
 
     bytes[] activeTssMembers; // active tss member group
     bytes[] inActiveTssMembers; // inactive tss member group
